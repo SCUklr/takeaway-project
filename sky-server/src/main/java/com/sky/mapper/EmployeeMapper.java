@@ -34,4 +34,11 @@ public interface EmployeeMapper {
      */
     // 动态SQL写到映射文件mapper/EmployeeMapper.xml
     Page<Employee> pageQuery(EmployeePageQueryDTO employeePageQueryDTO);
+
+    /**
+     * 根据id动态修改状态属性
+     * @param employee
+     * @return
+     */
+    void update(Employee employee);
 }
