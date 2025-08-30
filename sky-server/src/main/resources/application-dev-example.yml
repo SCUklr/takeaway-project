@@ -5,9 +5,9 @@ sky:
     port: 3306
     database: sky_take_out
     username: root
-    password: KLRklr0521
+    password: ${DB_PWD}
   alioss:
     endpoint: oss-cn-guangzhou.aliyuncs.com
-    access-key-id: LTAI5tHrN8RQ2Y5jXdhYABRB
-    access-key-secret: PmKtwICacvP8n1fBrYm0QQAXOikMeN
+    access-key-id: ${ALI_OSS_KEY_ID}
+    access-key-secret: ${ALI_OSS_KEY_SECRET}
     bucket-name: takeaway-project-klr
