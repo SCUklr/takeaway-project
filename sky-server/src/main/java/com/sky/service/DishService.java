@@ -22,4 +22,6 @@ public interface DishService {
     /*
     * 根据id修改菜品和口味信息*/
     void updateWithFlavor(DishDTO dishDTO);
+
+    void startOrStop(Integer status, Long id);
 }
