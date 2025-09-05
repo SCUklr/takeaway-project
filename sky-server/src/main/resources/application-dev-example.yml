@@ -11,3 +11,8 @@ sky:
     access-key-id: ${ALI_OSS_KEY_ID}
     access-key-secret: ${ALI_OSS_KEY_SECRET}
     bucket-name: takeaway-project-klr
+  redis:
+    host: localhost
+    port: 6379
+    auth:
+    database: 10
