@@ -131,11 +131,14 @@ public class OrderServiceImpl implements OrderService {
     public OrderPaymentVO payment(OrdersPaymentDTO ordersPaymentDTO) throws Exception {
         Long userId = BaseContext.getCurrentId();
         User user = userMapper.getById(userId);
-        JSONObject jsonObject = weChatPayUtil.pay(
-                ordersPaymentDTO.getOrderNumber(),
-                new BigDecimal("0.01"),
-                "苍穹外卖订单",
-                user.getOpenid());
+
+//        JSONObject jsonObject = weChatPayUtil.pay(
+//                ordersPaymentDTO.getOrderNumber(),
+//                new BigDecimal("0.01"),
+//                "苍穹外卖订单",
+//                user.getOpenid());
+        JSONObject jsonObject = new JSONObject();
+
         if ("ORDERPAID".equals(jsonObject.getString("code"))) {
             throw new OrderBusinessException("该订单已支付");
         }
