@@ -59,4 +59,8 @@
         order by order_time desc
     </select>
 
+    <select id="countStatus" resultType="java.lang.Integer">
+        select count(id) from orders where status = #{status}
+    </select>
+
 </mapper>
