@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
+import com.sky.dto.OrdersPaymentDTO;
+import com.sky.vo.OrderPaymentVO;
+import org.springframework.web.bind.annotation.PutMapping;
 
 @RestController("userOrderController")
 @RequestMapping("/user/order")
@@ -28,8 +31,20 @@ public class OrderController {
     @PostMapping("/submit")
     @ApiOperation("用户下单")
     public Result<OrderSubmitVO> submit(@RequestBody OrdersSubmitDTO ordersSubmitDTO) {
-        log.info("用户下单， 参数为:{}", ordersSubmitDTO);
+        log.info("用户下单：{}", ordersSubmitDTO);
         OrderSubmitVO orderSubmitVO = orderService.submitOrder(ordersSubmitDTO);
         return Result.success(orderSubmitVO);
+    }
+
+    /**
+     * 订单支付
+     */
+    @PutMapping("/payment")
+    @ApiOperation("订单支付")
+    public Result<OrderPaymentVO> payment(@RequestBody OrdersPaymentDTO ordersPaymentDTO) throws Exception {
+        log.info("订单支付：{}", ordersPaymentDTO);
+        OrderPaymentVO orderPaymentVO = orderService.payment(ordersPaymentDTO);
+        log.info("生成预支付交易单：{}", orderPaymentVO);
+        return Result.success(orderPaymentVO);
     }
 }

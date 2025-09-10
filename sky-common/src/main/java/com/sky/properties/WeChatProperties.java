@@ -20,4 +20,6 @@ public class WeChatProperties {
     private String notifyUrl; //支付成功的回调地址
     private String refundNotifyUrl; //退款成功的回调地址
 
+    // 环境标识：sandbox 表示微信支付沙箱；prod 表示正式环境
+    private String env;
 }
