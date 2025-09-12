@@ -404,4 +404,26 @@ public class OrderServiceImpl implements OrderService {
         upd.setCancelTime(LocalDateTime.now());
         orderMapper.update(upd);
     }
+
+    /**
+     * 客户催单
+     */
+    @Override
+    public void reminder(Long id) {
+        // 先根据id查询订单
+        Orders ordersDB = orderMapper.getById(id);
+        // 检验订单是否存在
+        if(ordersDB == null) {
+            throw new OrderBusinessException(MessageConstant.ORDER_STATUS_ERROR);
+        }
+
+        Map map = new HashMap();
+        map.put("type", 2); // 1表示来单提醒 2表示客户催单
+        map.put("orderId", id);
+        map.put("content", "订单号：" + ordersDB.getNumber());
+        String json = JSON.toJSONString(map);
+
+        // 通过WebSocket向客户端推送消息
+        webSocketServer.sendToAllClient(json);
+    }
 }
